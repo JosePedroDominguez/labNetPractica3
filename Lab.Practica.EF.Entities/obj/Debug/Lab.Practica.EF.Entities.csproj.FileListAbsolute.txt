@@ -1,0 +1,16 @@
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\Lab.Practica.EF.Entities.dll.config
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\Lab.Practica.EF.Entities.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\Lab.Practica.EF.Entities.pdb
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\EntityFramework.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\PagedList.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\EntityFramework.xml
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\bin\Debug\PagedList.xml
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\obj\Debug\Lab.Practica.EF.Entities.csproj.AssemblyReference.cache
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\obj\Debug\Lab.Practica.EF.Entities.csproj.CoreCompileInputs.cache
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\obj\Debug\Lab.Practica.EF.Entities.csproj.CopyComplete
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\obj\Debug\Lab.Practica.EF.Entities.dll
+C:\Users\mrjos\source\repos\labNetPractica3\Lab.Practica.EF.Entities\obj\Debug\Lab.Practica.EF.Entities.pdb
