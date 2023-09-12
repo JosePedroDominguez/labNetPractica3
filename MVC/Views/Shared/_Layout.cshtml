@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>@ViewBag.Title -Práctica 7 - WebAPI</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background: url(https://images4.alphacoders.com/115/1151249.jpg) no-repeat center fixed;
+            background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color: rgb(180, 178, 176);
+        }
+        a {
+            color :rgb(171, 150, 111);
+        }
+        p {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color: rgb(180, 178, 176);
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ffffff;
+            color: rgb(180, 178, 176);
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        td ul {
+            list-style-type: disc;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: rgb(171, 150, 111);
+        }
+
+        .boss-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+            .boss-card h3 {
+                color: rgb(171, 150, 111);
+            }
+
+            .boss-card ul {
+                list-style-type: disc;
+                padding-left: 20px;
+            }
+            .boss-card:nth-child(even) {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .boss-card:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            .boss-image {
+                max-width: 300px; 
+                margin-right: 20px;
+            }
+            .boss-image {
+                cursor: pointer;
+            }
+
+            .boss-image:hover {
+                transform: scale(2.2);
+                transition: transform 0.3s ease;
+            }
+        #eldenRingTheme {
+           
+            opacity: 0.5; 
+            position: fixed;
+            bottom: 100px; 
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Práctica 7 - Web API", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"   title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Proveedores", "Index", "Supplier", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Transportistas", "Index", "Shippers", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Elden Ring API", "Index", "Bosses", new { area = "" }, new { @class = "nav-link" })</li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content mb-5">
+        @RenderBody()
+    </div>
+    <footer class="footer bg-dark text-white mt-5 position: fixed-bottom">
+            <div class="container text-center">
+                <br />
+                <p>&copy; @DateTime.Now.Year - Práctica 7 - WebAPI</p>
+                <p>Desarrollado por Jose Pedro Dominguez</p>
+                <a href="https://www.linkedin.com/in/jose-pedro-dominguez-4b4014206/" target="_blank">
+                    <i class="fab fa-linkedin color: rgb(171, 150, 111)"></i>
+                </a>
+                <a href="https://github.com/JosePedroDominguez" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

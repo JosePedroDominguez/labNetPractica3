@@ -1,0 +1,68 @@
+﻿@model List<Lab.Practica.EF.Entities.Boss>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Agregar twbs-pagination -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
+    <style>
+        .boss-image {
+            cursor: pointer;
+        }
+
+            .boss-image:hover {
+                transform: scale(2.2); 
+                transition: transform 0.3s ease;
+            }
+    </style>
+    <title>Elden Ring Bosses</title>
+</head>
+<body>
+    <div>
+        <br />
+        <br />
+        <br />
+        <h2>Elden Ring Bosses</h2>
+        <audio id="eldenRingTheme" controls autoplay loop>
+            <source src="Audio/EldenRingMainTheme.mp3" type="audio/mpeg">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
+        <div id="boss-container">
+            @foreach (var boss in Model)
+            {
+                <div class="boss-card">
+                    <img class="boss-image" src="@boss.Image" alt="@boss.Name" onclick="enlargeImage(this)" />
+                    <div>
+                        <h3>@boss.Name</h3>
+                        <p><strong>Description:</strong> @boss.Description</p>
+                        <p><strong>Location:</strong> @boss.Location</p>
+                        <p><strong>Drops:</strong></p>
+                        <ul>
+                            @foreach (var drop in boss.Drops)
+                            {
+                                <li>@drop</li>
+                            }
+                        </ul>
+                        <p><strong>Health Points:</strong> @boss.HealthPoints</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+   function enlargeImage(image) {
+            image.style.transform = "scale(1.5)";
+            image.style.transition = "transform 0.3s ease";
+
+            setTimeout(function () {
+                image.style.transform = "scale(1)";
+            }, 2000);
+   }
+
+</script>

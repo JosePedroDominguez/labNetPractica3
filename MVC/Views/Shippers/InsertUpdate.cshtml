@@ -1,0 +1,78 @@
+﻿﻿@model MVC.Models.ShippersView
+@{
+    ViewBag.Title = "InsertUpdate";
+}
+<!DOCTYPE html>
+<br />
+<br />
+<h1>Transportistas</h1>
+@using (Html.BeginForm("InsertUpdate", "Shippers", FormMethod.Post, new { onsubmit = "return validateForm()" }))
+{
+    @Html.AntiForgeryToken()
+    <span style="color: red;">Los campos marcados con * son obligatorios</span>
+    <div class="form-group">
+        <label>Nombre de la compania:<span style="color: red;">*</span></label>
+        @Html.TextBoxFor(s => s.CompanyName, new { Model.CompanyName, @placeholder = "Ingresar el nombre de la compania", @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.CompanyName, " ", new { @id = "lnameID", @style = "color:red;" })
+    </div>
+    <div class="form-group">
+        <label>Telefono de la compania:</label>
+        @Html.TextBoxFor(s => s.Phone, new { Model.Phone, @placeholder = "Ingresar el numero de telefono", @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.Phone, " ", new { @id = "lphoneID", @style = "color:red;" })
+    </div>
+    <br />
+    <input type="submit" class="btn btn-success" value="Guardar" id="guardar" />
+    <input type="reset" class="btn btn-danger" value="Cancelar" />
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        setupValidationEvents();
+    });
+    function setupValidationEvents() {
+        jQuery("#CompanyName").on("input", validateName);
+        jQuery("#Phone").on("input", validatePhone);
+    }
+    function validateForm() {
+        return validateName() && validatePhone();
+    }
+    function validateName() {
+        let companyField = $("#CompanyName").val();
+        let lnameID = $("#lnameID");
+
+        if (companyField.trim() === "") {
+            showErrorMessage(lnameID, "El nombre de la empresa no puede estar vacío.");
+            return false;
+        } else if (companyField.length > 40) {
+            showErrorMessage(lnameID, "El nombre de la empresa debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(lnameID);
+            return true;
+        }
+    }
+    function validatePhone() {
+        let phoneField = $("#Phone").val();
+        let phoneError = $("#lphoneID");
+
+        if (phoneField.length > 24) {
+            showErrorMessage(phoneError, "El número de teléfono no debe exceder los 24 caracteres.");
+            return false;
+        }
+        let phoneRegex = /^\(\d{3}\)\s?\d{3}-\d{4}$/;
+        if (phoneField.trim() !== "" && !phoneRegex.test(phoneField)) {
+            showErrorMessage(phoneError, "El número de teléfono debe tener el formato (xxx) xxx-xxxx o (xxx)xxx-xxxx.");
+            return false;
+        }
+
+        clearErrorMessage(phoneError);
+        return true;
+    }
+    function showErrorMessage(element, message) {
+        element.text(message);
+        element.focus();
+    }
+    function clearErrorMessage(element) {
+        element.text("");
+    }
+</script>

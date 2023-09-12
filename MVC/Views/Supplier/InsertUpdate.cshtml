@@ -1,0 +1,155 @@
+﻿@model MVC.Models.SupplierView
+@{
+    ViewBag.Title = "InsertUpdate";
+}
+<br />
+<br />
+<h1>Proveedores</h1>
+@using (Html.BeginForm("InsertUpdate", "Supplier", FormMethod.Post, new { onsubmit = "return validateForm()" }))
+{
+    @Html.AntiForgeryToken()
+    <span style="color: red;">Los campos marcados con * son obligatorios</span>
+    <div class="form-group">
+        <label>Nombre de la Compañia: <span style="color: red;">*</span></label>
+        @Html.TextBoxFor(s => s.CompanyName, new { Model.CompanyName, placeholder = "Nombre de la Compañia", @class = "form-control" })
+        @Html.LabelFor(s => s.CompanyName, " ", new { @id = "lnamecomID", @style = "color:red;" })
+
+    </div>
+    <div class="form-group">
+        <label>Nombre del Proveedor: </label>
+        @Html.TextBoxFor(s => s.ContactName, new { Model.ContactName, placeholder = "Nombre del Proveedor", @class = "form-control" })
+        @Html.LabelFor(s => s.ContactName, " ", new { @id = "lnamesupID", @style = "color:red;" })
+    </div>
+    <div class="form-group">
+        <label>Titulo del Proveedor:</label>
+        @Html.TextBoxFor(s => s.ContactTitle, new { Model.ContactTitle, placeholder = "Title del Proveedor", @class = "form-control" })
+        @Html.LabelFor(s => s.ContactTitle, " ", new { @id = "ltitleID", @style = "color:red;" })
+    </div>
+    <div class="form-group">
+        <label>Dirección:</label>
+        @Html.TextBoxFor(s => s.Address, new { Model.Address, placeholder = "Dirección", @class = "form-control" })
+        @Html.LabelFor(s => s.Address, " ", new { @id = "laddressID", @style = "color:red;" })
+    </div>
+    <div class="form-group">
+        <label>Ciudad:</label>
+        @Html.TextBoxFor(s => s.City, new { Model.City, placeholder = "Ciudad", @class = "form-control" })
+        @Html.LabelFor(s => s.City, " ", new { @id = "lcityID", @style = "color:red;" })
+    </div>
+
+    <div class="form-group">
+        <label>Pais: </label>
+        @Html.TextBoxFor(s => s.Country, new { Model.Country, placeholder = "Pais", @class = "form-control" })
+        @Html.LabelFor(s => s.Country, " ", new { @id = "lcountryID", @style = "color:red;" })
+
+    </div>
+
+    <br />
+    <input type="submit" class="btn btn-success" value="Guardar" id="guardar" />
+    <input type="reset" class="btn btn-danger" value="Cancelar" />
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        setupValidationEvents();
+    });
+    function setupValidationEvents() {
+        jQuery("#CompanyName").on("input", validateCompanySupplier);
+        jQuery("#ContactName").on("input", validateNameSupplier);
+        jQuery("#ContactTitle").on("input", validateTitleSupplier);
+        jQuery("#Address").on("input", validateAddressSupplier);
+        jQuery("#City").on("input", validateCitySupplier);
+        jQuery("#Country").on("input", validateCountrySupplier);
+    }
+    function validateForm() {
+        return (
+            validateCompanySupplier() &&
+            validateNameSupplier() &&
+            validateTitleSupplier() &&
+            validateAddressSupplier() &&
+            validateCitySupplier() &&
+            validateCountrySupplier()
+        );
+    }
+    function validateCompanySupplier() {
+        let companyField = $("#CompanyName").val();
+        let lnameID = $("#lnamecomID");
+
+        if (companyField.trim() === "") {
+            showErrorMessage(lnameID, "El nombre de la empresa no puede estar vacío.");
+            return false;
+        } else if (companyField.length > 40) {
+            showErrorMessage(lnameID, "El nombre de la empresa debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(lnameID);
+            return true;
+        }
+    }
+    function validateNameSupplier() {
+        let nameField = $("#ContactName").val();
+        let lnamesupID = $("#lnamesupID"); // Use the correct ID for the label
+
+        if (nameField.length > 30) {
+            showErrorMessage(lnamesupID, "El nombre del proveedor debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(lnamesupID);
+            return true;
+        }
+    }
+    function validateTitleSupplier() {
+        let titleField = $("#ContactTitle").val();
+        let ltitleID = $("#ltitleID");
+
+        if (titleField.length > 30) {
+            showErrorMessage(ltitleID, "El título del proveedor debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(ltitleID);
+            return true;
+        }
+    }
+    function validateAddressSupplier() {
+        let addressField = $("#Address").val();
+        let laddressID = $("#laddressID");
+
+        if (addressField.length > 60) {
+            showErrorMessage(laddressID, "La dirección del proveedor debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(laddressID);
+            return true;
+        }
+    }
+    function validateCitySupplier() {
+        let cityField = $("#City").val();
+        let lcityID = $("#lcityID");
+
+        if (cityField.length > 15) {
+            showErrorMessage(lcityID, "La ciudad del proveedor debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(lcityID);
+            return true;
+        }
+    }
+    function validateCountrySupplier() {
+        let countryField = $("#Country").val();
+        let lcountryID = $("#lcountryID");
+
+        if (countryField.length > 14) {
+            showErrorMessage(lcountryID, "El país del proveedor debe tener menos de 40 caracteres.");
+            return false;
+        } else {
+            clearErrorMessage(lcountryID);
+            return true;
+        }
+    }
+    function showErrorMessage(element, message) {
+        element.text(message);
+        element.focus();
+    }
+    function clearErrorMessage(element) {
+        element.text("");
+    }
+</script>

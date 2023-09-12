@@ -1,0 +1,91 @@
+﻿@model List<MVC.Models.ShippersView>
+
+    @{
+        ViewBag.Title = "Transportistas";
+    }
+    <html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            let ascendingOrder = true;
+            function Delete(id) {
+                let isConfirmed = confirm('¿Eliminar esto?');
+                if (isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Shippers/Delete/" + id,
+                        success: function (data) {
+                            $("#shipper_" + id).remove();
+                        },
+                        error: function () {
+                            alert("Ha ocurrido un error!!");
+                        }
+                    });
+                }
+            }
+            
+
+            function toggleSortOrder() {
+                ascendingOrder = !ascendingOrder;
+                let buttonText = ascendingOrder ? "Ordenar Por # Descendente" : "Ordenar Por # Ascendente";
+                $("#sortById").text(buttonText);
+
+                let rows = $("#datos-container tbody tr").get();
+                rows.sort(function (a, b) {
+                    let keyA = parseInt($(a).find("th").text());
+                    let keyB = parseInt($(b).find("th").text());
+                    if (ascendingOrder) {
+                        return keyA - keyB;
+                    } else {
+                        return keyB - keyA;
+                    }
+                });
+
+                $("#datos-container tbody").empty();
+                $.each(rows, function (index, row) {
+                    $("#datos-container tbody").append(row);
+                });
+            }
+
+            $(document).ready(function () {
+                $("#sortById").click(toggleSortOrder);
+            });
+        </script>
+    </head>
+    <body>
+        <br />
+        <br />
+        <br />
+        <h2>@ViewBag.Title</h2>
+        <h3>@ViewBag.Message</h3>
+        <div>
+            <button id="sortById" class="btn btn-primary">Ordenar Por # Descendente</button>
+            @Html.ActionLink("Insertar Nuevo Transportistas", "InsertUpdate", "", new { @class = "btn btn-success" })
+        </div>
+        <div id="datos-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre de la compañía</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Eliminar registro</th>
+                        <th scope="col">Actualizar registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var shipper in Model)
+                    {
+                        <tr id="shipper_@shipper.Id">
+                            <th scope="row">@shipper.Id</th>
+                            <td>@shipper.CompanyName</td>
+                            <td>@shipper.Phone</td>
+                            <td><button onclick="Delete(@shipper.Id)" class="btn btn-danger">Borrar</button></td>
+                            <td>@Html.ActionLink("Actualizar", "InsertUpdate", new { id = shipper.Id, @class = "ShipperView" }, new { @class = "btn btn-info" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
